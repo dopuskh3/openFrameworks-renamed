@@ -1,17 +1,17 @@
 # vim:set ft=cmake:syn on
 cmake_minimum_required(VERSION 2.6)
+project(openFrameworks)
 set(OPENFRAMEWORKS_VERSION "0.6")
-set(OPENFRAMEWORKS_INSTALL_PREFIX "./install")
+set(OPENFRAMEWORKS_INSTALL_PREFIX "/usr/local")
 get_filename_component(OPENFRAMEWORKS_INSTALL_PREFIX ${OPENFRAMEWORKS_INSTALL_PREFIX} ABSOLUTE)
 set(OPENFRAMEWORKS_LIB_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/lib")
 set(OPENFRAMEWORKS_INCLUDE_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/include")
 set(OPENFRAMEWORKS_PKGCONFIG_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/lib/pkgconfig")
 
-project(openFrameworks)
 
-set (OPENFRAMEWORKS_PREFIX "/opt/openFrameworks")
+# set (OPENFRAMEWORKS_PREFIX "/opt/openFrameworks")
 
-include(../openFrameworks.cmake)
+include(openFrameworks.cmake)
 
 set (OFX_SOURCE_FILES 
     app/ofAppGlutWindow.cpp
@@ -71,18 +71,33 @@ set(ofincludes       .
                      video)
 
 set(ofincludes_files 
-    ofMain.h
-    sound/ofSoundPlayer.h
-    sound/ofSoundStream.h
+    events/ofEvents.h
+    events/ofEventUtils.h
     utils/ofConstants.h
-    utils/ofMath.h
-    utils/ofTypes.h
     utils/ofUtils.h
-    video/ofQtUtils.h
+    utils/ofTypes.h
+    utils/ofMath.h
+    ofMain.h
+    graphics/ofImage.h
+    graphics/ofGraphics.h
+    graphics/ofBitmapFont.h
+    graphics/ofTrueTypeFont.h
+    graphics/ofTexture.h
+    communication/ofArduino.h
+    communication/ofSerial.h
+    communication/ofStandardFirmata.h
     video/ofUCUtils.h
-    video/ofV4LUtils.h
     video/ofVideoGrabber.h
-    video/ofVideoPlayer.h)
+    video/ofVideoPlayer.h
+    video/ofQtUtils.h
+    video/ofV4LUtils.h
+    sound/ofSoundStream.h
+    sound/ofSoundPlayer.h
+    app/ofBaseApp.h
+    app/ofAppRunner.h
+    app/ofAppBaseWindow.h
+    app/ofAppGlutWindow.h)
+
 
 
 include_directories( ${ofincludes} )
@@ -108,14 +123,21 @@ target_link_libraries(openFrameworksShared ${OPENFRAMEWORKS_LIBRARIES})
 foreach (dir ${OPENFRAMEWORKS_INCLUDES})
     set(inccmd "${inccmd} -I${dir}")    
 endforeach()
+set (inccmd "${inccmd} -I${OPENFRAMEWORKS_INCLUDE_DIR}/openFrameworks" )
 
-foreach(dir ${ofincludes})
-    set(inccmd "${inccmd} -I${OPENFRAMEWORKS_INSTALL_PREFIX}/${dir}")
-endforeach()
+#foreach(dir ${ofincludes})
+#    set(inccmd "${inccmd} -I${OPENFRAMEWORKS_INSTALL_PREFIX}/${dir}")
+#endforeach()
+set ( prefix ${OPENFRAMEWORKS_INSTALL_PREFIX})
+set ( libdir ${OPENFRAMEWORKS_LIB_DIR})
+set ( includedir ${OPENFRAMEWORKS_INCLUDE_DIR}/openFrameworks )
 # set 
 set(flags "${inccmd}")
-set(libs  "-framework OpenGL")
-configure_file("openFrameworks.pc.in" "openframeworks.pc")
+if ( APPLE ) 
+    set(libs  "-framework OpenGL")
+endif ()
+
+configure_file("openFrameworks.pc.in" "openFrameworks.pc")
 
 
 #################################################################

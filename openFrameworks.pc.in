@@ -6,7 +6,7 @@ includedir=@includedir@/openFrameworks
 
 Name: openFrameworks
 Description: OpenFrameworks 
-# Version: @VERSION@
+Version: @OPENFRAMEWORKS_VERSION@
 Libs: -lopenFrameworks @libs@
 Libs.private: @privateLibs@
 Cflags: @flags@
