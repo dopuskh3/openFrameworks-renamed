@@ -2,11 +2,17 @@
 cmake_minimum_required(VERSION 2.6)
 project(openFrameworks)
 set(OPENFRAMEWORKS_VERSION "0.6")
-set(OPENFRAMEWORKS_INSTALL_PREFIX "/usr/local")
+set(OPENFRAMEWORKS_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
 get_filename_component(OPENFRAMEWORKS_INSTALL_PREFIX ${OPENFRAMEWORKS_INSTALL_PREFIX} ABSOLUTE)
 set(OPENFRAMEWORKS_LIB_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/lib")
 set(OPENFRAMEWORKS_INCLUDE_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/include")
 set(OPENFRAMEWORKS_PKGCONFIG_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/lib/pkgconfig")
+set(OPENFRAMEWORKS_FRAMEWORKS_DIR "${OPENFRAMEWORKS_INSTALL_PREFIX}/Frameworks")
+if(APPLE)
+    set(OPENFRAMEWORKS_BUILD_FRAMEWORK 1)
+else()
+    set(OPENFRAMEWORKS_BUILD_FRAMEWORK)
+endif()
 
 
 # set (OPENFRAMEWORKS_PREFIX "/opt/openFrameworks")
@@ -144,23 +150,33 @@ configure_file("openFrameworks.pc.in" "openFrameworks.pc")
 ## Install things
 
 # install library
-install(FILES ${ofincludes_files}
-        DESTINATION "${OPENFRAMEWORKS_INCLUDE_DIR}/openFrameworks")
-
-install(TARGETS openFrameworksShared 
-        DESTINATION ${OPENFRAMEWORKS_LIB_DIR})
-
-install(FILES openFrameworks.pc
-        DESTINATION ${OPENFRAMEWORKS_PKGCONFIG_DIR})
 #target_link_libraries(openFrameworksStatic ${OPENFRAMEWORKS_LIBRARIES})
-#if ( APPLE )
-#    set_target_properties(openFrameworksShared
-#            PROPERTIES    FRAMEWORK               TRUE
-#            PROPERTIES OUTPUT_NAME openFrameworks 
-#            LIBRARY             DESTINATION  "./lib"
-#            # PUBLIC_HEADER           "${FLAT_HDRS}"
-#            )
-#    install(TARGETS openFrameworksShared
-#            FRAMEWORK           DESTINATION framewk)
-#
-#endif()
+if ( APPLE )
+    if (OPENFRAMEWORKS_BUILD_FRAMEWORK)
+        set_target_properties(openFrameworksShared
+                PROPERTIES FRAMEWORK TRUE
+                 OUTPUT_NAME openFrameworks 
+                 PUBLIC_HEADER "${ofincludes_files}"
+                 #LIBRARY             DESTINATION  "./lib"
+                )
+        
+        #install(TARGETS openFrameworksShared)
+    endif()
+endif()
+
+if(NOT OPENFRAMEWORKS_BUILD_FRAMEWORK )
+    install(FILES ${ofincludes_files}
+        DESTINATION "${OPENFRAMEWORKS_INCLUDE_DIR}/openFrameworks")
+    install(FILES openFrameworks.pc
+        DESTINATION ${OPENFRAMEWORKS_PKGCONFIG_DIR})
+    install(TARGETS openFrameworksShared 
+        DESTINATION ${OPENFRAMEWORKS_LIB_DIR})
+else()
+    
+    install(TARGETS openFrameworksShared 
+        DESTINATION ${OPENFRAMEWORKS_FRAMEWORKS_DIR})
+endif()
+
+
+
+
