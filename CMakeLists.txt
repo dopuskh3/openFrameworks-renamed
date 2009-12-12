@@ -177,11 +177,35 @@ configure_file("openFrameworks.pc.in" "openFrameworks.pc")
 ## Install things
 
 # install library
-install(FILES ${ofincludes_files}
-        DESTINATION "${OPENFRAMEWORKS_INCLUDE_DIR}/openFrameworks")
+#target_link_libraries(openFrameworksStatic ${OPENFRAMEWORKS_LIBRARIES})
+if ( APPLE )
+    if (OPENFRAMEWORKS_BUILD_FRAMEWORK)
+        set_target_properties(openFrameworksShared
+                PROPERTIES FRAMEWORK TRUE
+                 OUTPUT_NAME openFrameworks 
+                 PUBLIC_HEADER "${ofincludes_files}"
+                 #LIBRARY             DESTINATION  "./lib"
+                )
+        
+        #install(TARGETS openFrameworksShared)
+    endif()
+endif()
 
-install(TARGETS openFrameworksShared 
+if(NOT OPENFRAMEWORKS_BUILD_FRAMEWORK )
+    install(FILES ${ofincludes_files}
+        DESTINATION "${OPENFRAMEWORKS_INCLUDE_DIR}/openFrameworks")
+    install(FILES openFrameworks.pc
+        DESTINATION ${OPENFRAMEWORKS_PKGCONFIG_DIR})
+    install(TARGETS openFrameworksShared 
         DESTINATION ${OPENFRAMEWORKS_LIB_DIR})
+else()
+    
+    install(TARGETS openFrameworksShared 
+        DESTINATION ${OPENFRAMEWORKS_FRAMEWORKS_DIR})
+endif()
+
+
+
 
 install(FILES openFrameworks.pc
         DESTINATION ${OPENFRAMEWORKS_PKGCONFIG_DIR})
