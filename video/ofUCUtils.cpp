@@ -1,7 +1,7 @@
 #include "ofUCUtils.h"
 #include "ofConstants.h"
 
-#ifdef TARGET_LINUX
+#ifdef OF_VIDEO_CAPTURE_UCVIEW
 
 #include <stdio.h>
 #include <stdint.h>

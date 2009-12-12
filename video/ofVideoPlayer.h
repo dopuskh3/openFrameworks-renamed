@@ -6,31 +6,13 @@
 
 
 #ifdef OF_VIDEO_PLAYER_GSTREAMER
-	#include <gst/gst.h>
-	#include <pthread.h>
-
-	typedef struct{
-		GMainLoop 		*	loop;
-		GstElement 		*	pipeline;
-		unsigned char 	*	pixels;
-		pthread_mutex_t 	buffer_mutex;
-		bool				bHasPixelsChanged;
-
-		guint64				durationNanos;
-		guint64				nFrames;
-		int					pipelineState;
-		float				speed;
-	}ofGstVideoData;
-
+	#include "ofGstUtils.h"
 #else
 	#include "ofQtUtils.h"
 #endif
 
 
 
-#define OF_LOOP_NONE					0x01
-#define OF_LOOP_PALINDROME				0x02
-#define OF_LOOP_NORMAL					0x03
 
 
 //---------------------------------------------
@@ -124,22 +106,7 @@ class ofVideoPlayer : public ofBaseVideo{
 		//--------------------------------------
 		#ifdef OF_VIDEO_PLAYER_GSTREAMER
 		//--------------------------------------
-		ofGstVideoData 		gstData;
-		bool				bIsMovieDone;
-		bool				isStream;
-		GstElement	* 		gstPipeline;
-		GstElement  *		gstSink;
-		gint64          	durationNanos;
-		int					loopMode;
-
-		bool				    posChangingPaused;
-
-
-		pthread_mutex_t 	seek_mutex;
-		void                seek_lock();
-		void                seek_unlock();
-		void 				gstHandleMessage();
-		bool 				allocate();
+		ofGstUtils 			gstUtils;
 		//--------------------------------------
 		#endif
 		//--------------------------------------
