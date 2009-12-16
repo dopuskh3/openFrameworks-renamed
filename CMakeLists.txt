@@ -5,8 +5,12 @@ set(OPENFRAMEWORKS_VERSION "0.6")
 
 set(OPENFRAMEWORKS_INSTALL_PREFIX "/usr/local" CACHE FILEPATH "Openframeworks install prefix")
 set(OPENFRAMEWORKS_PREFIX ${OPENFRAMEWORKS_INSTALL_PREFIX} CACHE FILEPATH "Openframeworks additional prefix to check for dependencies (rtaudio, fmodex ...)")
+if ( APPLE ) 
+    set ( OPENFRAMEWORKS_BUILD_FRAMEWORK ON CACHE BOOL "Compile openFrameworks as a standard mac os x framework")
+    set ( OPENFRAMEWORKS_FRAMEWORKS_DIR ON CACHE STRING "Openframework framework destination")
+endif ()
+
 if ( CMAKE_SYSTEM_NAME MATCHES "Linux" )
-    message ("ASDLKALSKD")
     set(OPENFRAMEWORKS_USE_GSTREAMER_VIDCAP ON CACHE BOOL "Use Gstreamner for VideoGrabber")
     set(OPENFRAMEWORKS_USE_UNICAP_VIDCAP OFF CACHE BOOL "Use Unicap for VideoGrabber")
     set(OPENFRAMEWORKS_USE_V4L_VIDCAP OFF CACHE BOOL "Use v4l api for VideoGrabber")
@@ -184,7 +188,7 @@ if ( APPLE )
                 PROPERTIES FRAMEWORK TRUE
                  OUTPUT_NAME openFrameworks 
                  PUBLIC_HEADER "${ofincludes_files}"
-                 #LIBRARY             DESTINATION  "./lib"
+                 INSTALL_NAME_DIR "${OPENFRAMEWORKS_FRAMEWORKS_DIR}"#LIBRARY             DESTINATION  "./lib"
                 )
         
         #install(TARGETS openFrameworksShared)
@@ -207,8 +211,6 @@ endif()
 
 
 
-install(FILES openFrameworks.pc
-        DESTINATION ${OPENFRAMEWORKS_PKGCONFIG_DIR})
 
 
 
