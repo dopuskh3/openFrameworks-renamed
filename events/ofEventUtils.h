@@ -2,8 +2,8 @@
 
 #ifdef OF_USING_POCO
 
-#include "Poco/FIFOEvent.h"
-#include "Poco/Delegate.h"
+#include <Poco/FIFOEvent.h>
+#include <Poco/Delegate.h>
 
 
 

@@ -38,8 +38,8 @@
 	#endif
 	#define WIN32_LEAN_AND_MEAN
 	#include <windows.h>
-	#include "GLee.h"
-   	#include "glu.h"
+	#include <GLee.h>
+   	#include <glu.h>
 	#define __WINDOWS_DS__
 	#define __WINDOWS_MM__
 	#if (_MSC_VER)       // microsoft visual studio
@@ -81,7 +81,7 @@
 		#define __MACOSX_CORE__
 	#endif
 	#include <unistd.h>
-	#include "GLee.h"
+	#include <GLee.h>
 	#include <OpenGL/glu.h>
 	#include <ApplicationServices/ApplicationServices.h>
 
@@ -92,7 +92,7 @@
 
 #ifdef TARGET_LINUX
         #include <unistd.h>
-        #include "GLee.h"
+        #include <GLee.h>
         #include <GL/glu.h>
 
     // for some reason, this isn't defined at compile time,
