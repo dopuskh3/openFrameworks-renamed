@@ -5,6 +5,12 @@
 #define OF_VERSION	6
 //-------------------------------
 
+
+
+#define OF_LOOP_NONE                    0x01
+#define OF_LOOP_PALINDROME              0x02
+#define OF_LOOP_NORMAL                  0x03
+
 //-------------------------------
 //  find the system type --------
 //-------------------------------
@@ -135,20 +141,32 @@
 	// some cameras don't seem to work in unicap, so we keep
 	// V4l code here.  comment out this next line, to switch to the older
 	// V4l code...
+    // 
+    // - OF_CAPTURE_UNICAP: capture video throught unicap 
+    // - OF_CAPTURE_V4L   : capture video throught video4linux
+    // - OF_CAPTURE_GSTREAMER : capture video throught gstreamer API
+    //
+    //
+    #define OF_VIDEO_CAPTURE_GSTREAMER
 
-	// (if you change this, you might need to clean and rebuild, in CB build->rebuild)
+	// #define OF_SWITCH_TO_UNICAP_FOR_LINUX_VIDCAP
+    #ifdef OF_CAPTURE_UNICAP
+        #define OF_VIDEO_CAPTURE_UNICAP
+        #undef  OF_VIDEO_CAPTURE_V4L
+        #undef  OF_VIDEO_CAPTURE_GSTREAMER
+    #endif 
 
-	#define OF_SWITCH_TO_UNICAP_FOR_LINUX_VIDCAP
-
-
-
-	#ifdef OF_SWITCH_TO_UNICAP_FOR_LINUX_VIDCAP
-		#define OF_VIDEO_CAPTURE_UNICAP
-    #else
-		#define OF_VIDEO_CAPTURE_V4L
-	#endif
-
-
+    #ifdef OF_CAPTURE_V4L
+       #undef OF_VIDEO_CAPTURE_UNICAP
+       #define OF_VIDEO_CAPTURE_V4L
+       #undef OF_VIDEO_CAPTURE_GSTREAMER
+    #endif
+    
+    #ifdef OF_CAPTURE_GSTREAMER
+       #undef OF_VIDEO_CAPTURE_UNICAP
+       #undef OF_VIDEO_CAPTURE_V4L
+       #define OF_VIDEO_CAPTURE_GSTREAMER
+    #endif
 
 #else
 
