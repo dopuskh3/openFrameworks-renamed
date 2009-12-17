@@ -32,12 +32,11 @@ Openframeworks depends on;
 | GLee         |  X  |  X   |   X   |   http://www.opengl.org/sdk/libs/GLee/                |
 
 
-h3 On Linux
+h3. On Linux
 
-h4 RtAudio
+h4. RtAudio
 
-bc.. 
-tar zxvf rtaudio-<version>.tar.gz
+bc.. tar zxvf rtaudio-<version>.tar.gz
 cd rtaudio-<version>
 ./configure
 make 
@@ -48,16 +47,14 @@ cp librtaudio.a ./../libsLinux/lib
 h4. Unicap
 
 
-bc..
-./configure --enable-static --disable-shared --prefix=/tmp/unicap --disable-unicapgtk ; make ; make install
+bc.. ./configure --enable-static --disable-shared --prefix=/tmp/unicap --disable-unicapgtk ; make ; make install
 cp -R /tmp/unicap/lib/ ./../libsLinux/lib
 cp -R /tmp/unicap/include ./../libsLinux/include
 
 
 h4. glfw
 
-bc..
-apt-get install libglfw-dev libglfw2
+bc.. apt-get install libglfw-dev libglfw2
 
 h4. glut
 
