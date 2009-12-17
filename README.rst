@@ -11,9 +11,7 @@ openFramework framework.
 
 Added cmake files to build openframeworks as a shared library and mac os x frameworks
 
-**Any comment, help or suggestions are wellcome** [#]_ 
-
-Any suggestions/bugs: f.visconte@gmail.con
+**Any comment, help or suggestions are wellcome f.visconte@gmail.com**
 
 What differs from official release 
 ----------------------------------
@@ -325,7 +323,7 @@ Under Snow Leopard you have to pass **-m32** to **CFLAGS** to compile for i386 a
 
 Links 
 ------
-.. [#] f.visconte@gmail.com
+
 .. [#] http://www.openframeworks.cc/forum/viewtopic.php?f=5&t=2097
 .. [#] http://www.cmake.org/
 
