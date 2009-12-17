@@ -16,13 +16,23 @@ Added cmake files to build openframeworks as a shared library and mac os x frame
 What differs from official release 
 ----------------------------------
 
-* Patched ofSoundStream.cpp to be compatible with the last RtAudio (>0.4) API.
+The following patch have been applied
+* Patched ofSoundStream.cpp to be compatible with the last RtAudio (>0.4) API (see [#]_).
 * Patched to use Gstreamer API for video capture (see this topic [#]_ on OF forum)
 
 Tested on:
  * Snow Leopard
  * Ubuntu Linux 9.10
  * Debian Squeeze
+
+Todo List
+---------
+
+* check for build-time defines and compile time options. Add them to cmake variable (eg. data/ path etc...)
+* add OF examples to reposotory
+* make a debian package (need to package unpackaged dependencies too). Licence problem for fmodex ? 
+* add a sample project and addon with the cmake file to build them.
+* test, test , test
 
 Installing OpenFrameworks dependencies
 --------------------------------------
@@ -323,7 +333,7 @@ Under Snow Leopard you have to pass **-m32** to **CFLAGS** to compile for i386 a
 
 Links 
 ------
-
+.. [#] http://www.openframeworks.cc/forum/viewtopic.php?f=7&t=2968
 .. [#] http://www.openframeworks.cc/forum/viewtopic.php?f=5&t=2097
 .. [#] http://www.cmake.org/
 
