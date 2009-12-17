@@ -2,7 +2,8 @@
 OpenFrameworks
 ==============
 
-.. contents::
+.. contents:: Table of Contents
+   :depth: 2
 
 
 This is an **unofficial** mirror of openFrameworks source code. The following repository aims at providing patches and a easy build system for
@@ -10,7 +11,7 @@ openFramework framework.
 
 Added cmake files to build openframeworks as a shared library and mac os x frameworks
 
-**Any comment, help or suggestions are wellcome [#]** 
+**Any comment, help or suggestions are wellcome** [#]_ 
 
 Any suggestions/bugs: f.visconte@gmail.con
 
