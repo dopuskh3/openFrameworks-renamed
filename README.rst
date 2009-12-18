@@ -71,7 +71,10 @@ On Linux
 
 Install the following dependencies (on Ubuntu Karmic, debian Squeez)::
  
- apt-get install libxi-dev libxmu-dev pkg-config libgstreamer-plugins-base0.10-dev libgstreamer0.10-dev libavformat-dev libswscale-dev libraw1394-dev libhal-dev
+ apt-get install libxi-dev libxmu-dev pkg-config libgstreamer-plugins-base0.10-dev \
+                  libgstreamer0.10-dev libavformat-dev libswscale-dev libraw1394-dev \
+                  libhal-dev libavcodec-dev, libavutil-dev, libasound2-dev, libxv-dev \
+                  x11proto-video-dev 
 
 Install unicap library if you chose to use unicap for video capture::
  
