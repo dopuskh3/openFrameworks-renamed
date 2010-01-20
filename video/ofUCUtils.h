@@ -3,7 +3,7 @@
 
 #include "ofConstants.h"
 
-#ifdef OF_VIDEO_CAPTURE_UCVIEW
+#ifdef OF_VIDEO_CAPTURE_UNICAP
 
 #include <stdio.h>
 #include <stdlib.h>

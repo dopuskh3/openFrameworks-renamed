@@ -90,8 +90,8 @@ RtAudio
   cd rtaudio-<version>
   ./configure
   make 
-  cp RtAudio.h RtError.h ./../libsLinux/include
-  cp librtaudio.a ./../libsLinux/lib
+  cp RtAudio.h RtError.h /usr/local/lib/include
+  cp librtaudio.a /usr/local/lib
 
 
 Unicap
@@ -100,10 +100,7 @@ Unicap
 
 ::
   
-  ./configure --enable-static --disable-shared --prefix=/tmp/unicap --disable-unicapgtk ; make ; make install
-  cp -R /tmp/unicap/lib/ ./../libsLinux/lib
-  cp -R /tmp/unicap/include ./../libsLinux/include
-
+  apt-get install libunicap2-dev libunicap2
 
 
 glfw
@@ -132,10 +129,7 @@ FreeImage
 
 ::
   
-  cd FreeImage
-  make
-  sudo cp Dist/FreeImage.h /usr/local/include
-  sudo cp Dist/libfreeimage.a /usr/local/lib
+  apt-get install libfreeimage3 libfreeimage-dev
 
 GLee
 ++++
@@ -152,6 +146,7 @@ GLee
 fmodex
 ++++++
 
+    see the fmod homepage 
 
 On Mac OS X
 ###########

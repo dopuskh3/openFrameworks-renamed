@@ -5,8 +5,8 @@
  *      Author: art
  */
 
+#include "ofConstants.h"
 #ifdef TARGET_LINUX
-
 #include "ofGstUtils.h"
 #include "ofUtils.h"
 #include "gst/app/gstappsink.h"
@@ -1233,7 +1233,6 @@ void ofGstUtils::gstHandleMessage(){
 
 	gst_object_unref(GST_OBJECT(bus));
 }
-
 
 #endif
 

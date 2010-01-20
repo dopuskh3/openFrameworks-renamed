@@ -13,12 +13,12 @@
 #ifdef OF_VIDEO_CAPTURE_DIRECTSHOW
 	#include "videoInput.h"
 #endif
-
 #ifdef OF_VIDEO_CAPTURE_UNICAP
 	#include "ofUCUtils.h"
 #endif
 
 #ifdef OF_VIDEO_CAPTURE_GSTREAMER
+    #warning "GSTREAMER CAPTURE ENABLED"
 	#include "ofGstUtils.h"
 #endif
 

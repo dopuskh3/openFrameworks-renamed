@@ -26,6 +26,7 @@ if ( CMAKE_SYSTEM_NAME MATCHES "Linux" )
         set ( VIDCAP_DEFINE -DOF_CAPTURE_GSTREAMER )
     endif ()
     add_definitions( ${VIDCAP_DEFINE} )
+    message("Grabber config ${VIDCAP_DEFINE}")
 endif() 
 
 get_filename_component(OPENFRAMEWORKS_INSTALL_PREFIX ${OPENFRAMEWORKS_INSTALL_PREFIX} ABSOLUTE)
@@ -82,8 +83,8 @@ set (OFX_SOURCE_FILES
     video/ofVideoPlayer.cpp
     video/ofQtUtils.h
     video/ofV4LUtils.h
-    video/ofGstUtils.h
     video/ofGstUtils.cpp
+    video/ofGstUtils.h
     video/ofVideoGrabber.cpp
     sound/ofSoundStream.h
     sound/ofSoundStream.cpp
