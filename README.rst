@@ -20,9 +20,10 @@ The following patch have been applied
 * Patched ofSoundStream.cpp to be compatible with the last RtAudio (>0.4) API (see [#]_).
 * Patched to use Gstreamer API for video capture (see this topic [#]_ on OF forum)
 
-Tested on:
+Tested on (understand "on day it worked on .."):
  * Snow Leopard
- * Ubuntu Linux 9.10
+ * Ubuntu Linux 9.10 (32)
+ * Ubuntu Linux 9.10 (x64)
  * Debian Squeeze
 
 Todo List
