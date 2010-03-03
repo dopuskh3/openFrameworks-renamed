@@ -11,12 +11,13 @@ cmake_minimum_required(VERSION 2.6)
 cmake_policy(SET CMP0011 NEW)
 
 # set (OPENFRAMEWORKS_PREFIX "/opt/openFrameworks")
-
+# Set default libraries search path
 if ( DEFINED OPENFRAMEWORKS_PREFIX ) 
     MESSAGE ( "Searching libraries in ${OPENFRAMEWORKS_PREFIX}" )
     set (OPENFRAMEWORKS_LIBRARY_PREFIX "${OPENFRAMEWORKS_PREFIX}/lib")
     set (OPENFRAMEWORKS_INCLUDE_PREFIX "${OPENFRAMEWORKS_PREFIX}/include")
 endif( DEFINED OPENFRAMEWORKS_PREFIX ) 
+
 
 message ( "${OPENFRAMEWORKS_INCLUDE_PREFIX}")
 message("${CMAKE_SYSTEM_NAME}")

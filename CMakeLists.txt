@@ -6,8 +6,9 @@ set(OPENFRAMEWORKS_VERSION "0.6")
 set(OPENFRAMEWORKS_INSTALL_PREFIX "/usr/local" CACHE FILEPATH "Openframeworks install prefix")
 set(OPENFRAMEWORKS_PREFIX ${OPENFRAMEWORKS_INSTALL_PREFIX} CACHE FILEPATH "Openframeworks additional prefix to check for dependencies (rtaudio, fmodex ...)")
 if ( APPLE ) 
+    set ( CMAKE_OSX_ARCHITECTURES "i386" CACHE STRING "Architecture" )
     set ( OPENFRAMEWORKS_BUILD_FRAMEWORK ON CACHE BOOL "Compile openFrameworks as a standard mac os x framework")
-    set ( OPENFRAMEWORKS_FRAMEWORKS_DIR ON CACHE STRING "Openframework framework destination")
+    set ( OPENFRAMEWORKS_FRAMEWORKS_DIR CACHE FILEPATH "Openframework framework destination")
 endif ()
 
 if ( CMAKE_SYSTEM_NAME MATCHES "Linux" )
@@ -192,7 +193,7 @@ if ( APPLE )
                  INSTALL_NAME_DIR "${OPENFRAMEWORKS_FRAMEWORKS_DIR}"#LIBRARY             DESTINATION  "./lib"
                 )
         
-        #install(TARGETS openFrameworksShared)
+        install(TARGETS openFrameworksShared FRAMEWORK DESTINATION ${OPENFRAMEWORKS_FRAMEWORKS_DIR})
     endif()
 endif()
 
@@ -204,9 +205,8 @@ if(NOT OPENFRAMEWORKS_BUILD_FRAMEWORK )
     install(TARGETS openFrameworksShared 
         DESTINATION ${OPENFRAMEWORKS_LIB_DIR})
 else()
-    
-    install(TARGETS openFrameworksShared 
-        DESTINATION ${OPENFRAMEWORKS_FRAMEWORKS_DIR})
+    #install(TARGETS openFrameworksShared 
+    #    DESTINATION ${OPENFRAMEWORKS_FRAMEWORKS_DIR})
 endif()
 
 
